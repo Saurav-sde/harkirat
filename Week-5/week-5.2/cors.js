@@ -15,11 +15,4 @@ app.post("/sum", (req,res)=>{
     })
 })
 
-
-
-
-
-
-
-
 app.listen(3000);
