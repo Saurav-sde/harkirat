@@ -1,0 +1,188 @@
+1. Types of languages:
+    i. Strongly typed vs loosely typed : The terms strongly typed and loosely typed refer to how programming languages handle types, particularly how strict they are about type conversions and type safety.
+            - Strongly typed languages:
+                - Examples - Java, C++, C, Rust
+                - Benefits - 
+                    i. Lesser runtime errors
+                    ii. Stricter codebase
+                    iii. Easy to catch errors at compile time
+
+                    Example - Code doesn’t work ❌
+                        #include <iostream>
+                        int main() {
+                        int number = 10;
+                        number = "text";
+                        return 0;
+                        }
+
+            - Loosely typed languages
+                - Examples - Python, Javascript, Perl, php
+                - Benefits
+                    i. Easy to write code
+                    ii. Fast to bootstrap
+                    iii. Low learning curve
+                    
+                    Example: Code does work ✅
+                        function main() {
+                        let number = 10;
+                        number = "text";
+                        return number;
+                        }
+            
+            - People realised that javascript is a very power language, but lacks types. Typescript was introduced as a new language to add types on top of javascript.
+
+2. What is Typescript ?
+    i. Definition:
+        - TypeScript is a programming language developed and maintained by Microsoft. 
+        - It is a strict syntactical superset of JavaScript and adds optional static typing to the language.
+
+    ii. Where/How does typescript code run?
+        - Typescript code never runs in your browser. Your browser can only understand javascript. 
+        - Javascript is the runtime language (the thing that actually runs in your browser/nodejs runtime)
+        - Typescript is something that compiles down to javascript
+        - When typescript is compiled down to javascript, you get type checking (similar to C++). If there is an error, the conversion to Javascript fails. 
+
+    iii. Typescript compiler
+        - tsc is the official typescript compiler that you can use to convert Typescript code into Javascript
+        - There are many other famous compilers/transpilers for converting Typescript to Javascript. Some famous ones are - 
+            I. esbuild
+            II. swc
+
+3. The tsc Compiler:    
+    - Step 1 - Install tsc/typescript globally:
+        npm install -g typescript
+
+    - Step 2 - Initialize an empty Node.js project with typescript:
+        npm init -y
+        npx tsc --init
+        These commands should initialize two files in your project - package.json, tsconfig.json
+    
+    - Step 3 - Create a a.ts file:
+        Program for that as an example - 
+            const x: number = 1;
+            console.log(x);
+
+    - Step 4 - Compile the ts file to js file
+        tsc - b / npx tsc -b {if ts not installed globally}
+
+4. The tsconfig file:
+    - The tsconfig file has a bunch of options that you can change to change the compilation process.
+    - Some of these include:
+        1. target
+            The target option in a tsconfig.json file specifies the ECMAScript target version to which the TypeScript compiler will compile the TypeScript code.
+            To try it out, try compiling the following code for target being ES5 and es2020
+            
+        2. rootDir
+            Where should the compiler look for .ts files. Good practise is for this to be the src folder
+        
+        3. outDir
+            Where should the compiler look for spit out the .js files.
+        
+        4. noImplicitAny
+            Try enabling it and see the compilation errors on the following code - 
+            const greet = (name) => `Hello, ${name}!`;
+
+        5. removeComments
+            Weather or not to include comments in the final js file
+    
+
+
+
+
+1. Interface in TypeScript:  
+   - An interface defines the structure of an object by specifying the expected properties and methods.  
+   - It is used to ensure type safety and for type-checking in TypeScript.  
+   - Interfaces only define the blueprint and do not provide any implementation.  
+   - They support multiple inheritance, allowing a class or another interface to inherit from multiple interfaces.  
+   - Classes can implement interfaces, meaning they must define all the properties and methods specified in the interface.  
+
+2. Difference Between `implements` and `extends` in TypeScript:  
+  - `implements`:  
+    - Used by a class to implement an interface.  
+    - A class must provide implementation for all methods and properties declared in the interface.  
+    - A class can implement multiple interfaces.  
+  - `extends`:  
+    - Used by a class to inherit from another class or by an interface to extend another interface.  
+    - A class inherits the implementation and properties of a parent class.  
+    - An interface can extend multiple other interfaces.  
+    - A class can only extend one class, but it can implement multiple interfaces.  
+
+3. Interface vs Abstract Class:  
+   - Interfaces:  
+     - They are used to define the structure of an object or a contract for classes to follow.  
+     - Interfaces cannot have constructors or concrete (implemented) methods.  
+     - They support multiple inheritance, allowing classes to implement multiple interfaces.  
+   - Abstract Classes:  
+     - Abstract classes can include both abstract methods (without implementation) and concrete methods (with implementation).  
+     - They can have constructors, allowing for initialization logic.  
+     - Abstract classes support single inheritance, meaning a class can only extend one abstract class.  
+   - Key Differences:  
+     - Interfaces focus solely on defining structure, while abstract classes can include implementation.  
+     - A class can implement multiple interfaces but can extend only one abstract class.  
+     - Abstract classes are a mix of implementation and abstraction, whereas interfaces are purely abstract.  
+
+4. Types in TypeScript:  
+   - Primitive Types:  
+     - These include basic types such as `string`, `number`, `boolean`, `null`, and `undefined`.  
+     - They represent single, immutable values.  
+   - Complex Types:  
+     - Types such as `array`, `object`, `tuple`, and `enum` are considered complex types.  
+     - They allow grouping multiple related values together.  
+   - Special Types:  
+     - `any`: Can hold values of any type, offering maximum flexibility but less type safety.  
+     - `unknown`: Similar to `any` but requires a type assertion or check before use.  
+     - `void`: Used for functions that do not return any value.  
+     - `never`: Represents values that never occur, such as functions that always throw errors or have infinite loops.  
+
+5. Array in TypeScript:  
+   - An array is a collection of elements of the same type stored together.  
+   - It allows storing and manipulating a list of values.  
+   - Arrays can be declared using square brackets (e.g., `number[]`) or the `Array` type (e.g., `Array<number>`).  
+   - They support several built-in methods like `push` (to add an element), `pop` (to remove the last element), `map` (to transform each element), and more.  
+
+
+
+   1. Pick in TypeScript:  
+   - The `Pick` utility type allows you to create a new type by picking a set of properties from an existing type.  
+   - It takes two arguments: the original type and the keys to pick.  
+   - Useful for creating types that contain only a subset of the properties of another type.  
+   
+2. Partial in TypeScript:  
+   - The `Partial` utility type makes all properties of a given type optional.  
+   - It allows you to create a type where none of the properties are required.  
+   - Useful when you need to modify an object incrementally or only provide some of the properties.  
+
+3. Readonly in TypeScript:  
+   - The `Readonly` utility type makes all properties of a given type immutable.  
+   - Once an object is marked as `readonly`, its properties cannot be reassigned.  
+   - Useful for preventing accidental modifications to objects.  
+
+4. Record in TypeScript:  
+   - The `Record` utility type allows you to create an object type with a specific set of keys and values.  
+   - It takes two parameters: a set of keys (usually a union type) and the type of the values.  
+   - Helps create types where the keys are known but the values can be of a specific type.  
+   
+5. Maps in TypeScript:  
+   - A `Map` is a built-in object that stores key-value pairs.  
+   - The keys and values can be of any type.  
+   - Maps preserve the insertion order of elements and provide methods like `set`, `get`, and `has` to interact with data.  
+   - Unlike objects, maps allow keys to be of any type, not just strings or symbols.  
+
+6. Exclude in TypeScript:  
+   - The `Exclude` utility type creates a new type by excluding certain types from a union type.  
+   - It takes two parameters: a union type and a type to exclude.  
+   - Useful for removing unwanted types from a union type.  
+
+7. Type Inference using Zod in TypeScript:  
+   - Zod is a TypeScript-first schema declaration and validation library that helps with type inference.  
+   - It provides a way to define a schema for data validation and automatically infers TypeScript types from the schema.  
+   - Zod schemas are highly composable and provide excellent type safety during runtime validation.  
+   - It is often used in scenarios where input data must be validated (e.g., API responses, form data).  
+   - Zod automatically infers types from defined schemas, reducing the need for manual type annotations.  
+   - Example of Zod type inference:  
+        import { z } from 'zod';  
+        const userSchema = z.object({  
+        name: z.string(),  
+        age: z.number().int().min(18),  
+        });  
+        type User = z.infer<typeof userSchema>;  
